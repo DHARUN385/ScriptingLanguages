@@ -1,0 +1,73 @@
+
+class Vehicle
+  attr_accessor :mileage, :fuel_level
+
+  def initialize(mileage, fuel_level)
+    @mileage = mileage
+    @fuel_level = fuel_level
+  end
+
+  def calculate_mileage
+    "Current mileage is #{@mileage} miles per gallon."
+  end
+
+  def check_fuel
+    "Fuel level is #{@fuel_level} liters."
+  end
+
+  def perform_maintenance
+    "Performing general maintenance."
+  end
+end
+
+class Car < Vehicle
+  attr_accessor :number_of_doors
+
+  def initialize(mileage, fuel_level, number_of_doors)
+    super(mileage, fuel_level)
+    @number_of_doors = number_of_doors
+  end
+
+  def car_specific_task
+    "This car has #{@number_of_doors} doors."
+  end
+end
+
+class Truck < Vehicle
+  attr_accessor :cargo_capacity
+
+  def initialize(mileage, fuel_level, cargo_capacity)
+    super(mileage, fuel_level)
+    @cargo_capacity = cargo_capacity
+  end
+
+  def truck_specific_task
+    "Truck cargo capacity is #{@cargo_capacity} tons."
+  end
+end
+
+class Motorcycle < Vehicle
+  attr_accessor :helmet_included
+
+  def initialize(mileage, fuel_level, helmet_included)
+    super(mileage, fuel_level)
+    @helmet_included = helmet_included
+  end
+
+  def motorcycle_specific_task
+    "Helmet included: #{@helmet_included}."
+  end
+end
+
+car = Car.new(25, 40, 4)
+puts car.calculate_mileage          # Inherited method
+puts car.check_fuel                 # Inherited method
+puts car.car_specific_task          # Car-specific method
+
+truck = Truck.new(15, 100, 10)
+puts truck.calculate_mileage        # Inherited method
+puts truck.truck_specific_task      # Truck-specific method
+
+motorcycle = Motorcycle.new(50, 15, true)
+puts motorcycle.check_fuel           # Inherited method
+puts motorcycle.motorcycle_specific_task  # Motorcycle-specific method
