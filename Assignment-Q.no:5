@@ -1,0 +1,25 @@
+
+package require Tk
+set main_window [tk::frame .]
+pack $main_window -fill both -expand true
+
+listbox .listbox1 -height 10 -width 20
+pack .listbox1 -side left -padx 10 -pady 10
+
+listbox .listbox2 -height 10 -width 20
+pack .listbox2 -side right -padx 10 -pady 10
+
+foreach item {Apple Banana Cherry Date Fig Grape} {
+    .listbox1 insert end $item
+}
+
+bind .listbox1 <<ListboxSelect>> {
+    set selected_item [.listbox1 get [selection get]]
+    .listbox2 insert end $selected_item
+}
+
+bind .listbox2 <<ListboxSelect>> {
+    .listbox2 delete [selection get]
+}
+
+tk::mainloop
